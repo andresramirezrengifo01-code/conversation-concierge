@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import HowItWorks from '@/components/HowItWorks';
-import ChatDemo from '@/components/ChatDemo';
+// import ChatDemo from '@/components/ChatDemo';
 import ForWho from '@/components/ForWho';
 import Comparison from '@/components/Comparison';
 import Testimonials from '@/components/Testimonials';
@@ -24,8 +24,8 @@ const Index = () => {
       <main>
         <Hero />
         <HowItWorks />
-        <ChatDemo />
-        <ForWho />
+        {/* <ChatDemo /> */}
+        {/* <ForWho /> */}
         <Comparison />
         <Testimonials />
         <Features />

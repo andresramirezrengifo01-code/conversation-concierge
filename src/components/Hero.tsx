@@ -50,15 +50,7 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Trust chips */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 animate-fade-up stagger-4">
-            {trustChips.map((chip, index) => (
-              <div key={index} className="chip">
-                <chip.icon className="w-4 h-4 text-accent" />
-                <span className="text-foreground/80">{chip.label}</span>
-              </div>
-            ))}
-          </div>
+          {/* Trust chips */} 
         </div>
 
         {/* VSL Container */}
@@ -83,6 +75,16 @@ const Hero = () => {
 
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+          </div>
+        
+          {/* Trust chips */} 
+          <div className="mt-8 flex flex-row items-center justify-center gap-3 flex-nowrap animate-fade-up stagger-5">
+            {trustChips.map((chip, index) => (
+              <div key={index} className="chip whitespace-nowrap">
+                <chip.icon className="w-4 h-4 text-accent" />
+                <span className="text-foreground/80">{chip.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

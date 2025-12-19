@@ -1,5 +1,5 @@
-import { Zap, Target, UserCheck, Send, MessageSquare, Image } from 'lucide-react';
-import robotMascot from '@/assets/robot-mascot.png';
+import { Zap, Target, UserCheck, Send, MessageSquare } from 'lucide-react';
+import freepik from '@/assets/freepik.svg';
 
 const Features = () => {
   const features = [
@@ -34,7 +34,18 @@ const Features = () => {
     <section className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
+
+          {/* Robot mascot - AHORA PRIMERO (IZQUIERDA) */}
+          <div className="relative hidden lg:block">
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/10 rounded-full blur-3xl" />
+            <img
+              src={freepik}
+              alt="ConverxIA Robot"
+              className="relative z-10 w-full max-w-lg mx-auto animate-float"
+            />
+          </div>
+
+          {/* Content - AHORA SEGUNDO (DERECHA) */}
           <div>
             <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
               ¿Qué obtendrás con nuestra{' '}
@@ -60,16 +71,6 @@ const Features = () => {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Robot mascot */}
-          <div className="relative hidden lg:block">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/10 rounded-full blur-3xl" />
-            <img
-              src={robotMascot}
-              alt="ConverxIA Robot"
-              className="relative z-10 w-full max-w-lg mx-auto animate-float"
-            />
           </div>
         </div>
       </div>

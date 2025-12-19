@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 
+// Importar logos (SIN freepik)
+import hotmartLogo from '@/assets/hotmart.svg';
+import huggiesLogo from '@/assets/huggies.svg';
+import kmbLogo from '@/assets/KMB_BIG 1.svg';
+import seleLogo from '@/assets/sele.svg';
+import tesaLogo from '@/assets/tesa.svg';
+import cambridgeLogo from '@/assets/university-of-cambridge.svg';
+import terpelLogo from '@/assets/terpel.svg';
+
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -25,7 +34,16 @@ const Testimonials = () => {
     },
   ];
 
-  const logos = ['Terpel', 'Tesa', 'Hotmart', 'Cambridge', 'Kimberly-Clark', 'Huggies'];
+  // Array de logos SIN Freepik (6 logos en total)
+  const logos = [
+    { name: 'Terpel', image: terpelLogo },
+    { name: 'Tesa', image: tesaLogo },
+    { name: 'Hotmart', image: hotmartLogo },
+    { name: 'Sele', image: seleLogo },
+    { name: 'Cambridge', image: cambridgeLogo },
+    { name: 'Kimberly-Clark', image: kmbLogo },
+    { name: 'Huggies', image: huggiesLogo },
+  ];
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -111,14 +129,14 @@ const Testimonials = () => {
           <p className="text-center text-muted-foreground mb-8">
             Grandes marcas que confían en <span className="text-foreground">ConverxIA</span>
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+          <div className="flex flex-wrap justify-center items-center gap-8">
             {logos.map((logo, index) => (
-              <div
+              <img
                 key={index}
-                className="text-xl font-display font-bold text-foreground/50"
-              >
-                {logo}
-              </div>
+                src={logo.image}
+                alt={logo.name}
+                className="h-8 md:h-10 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+              />
             ))}
           </div>
         </div>

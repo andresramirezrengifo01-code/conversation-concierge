@@ -1,3 +1,7 @@
+
+import group from '@/assets/group.svg';
+
+
 const Footer = () => {
   return (
     <footer className="py-12 border-t border-border/50">
@@ -5,13 +9,12 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo + tagline */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-              <span className="text-accent-foreground font-bold text-lg">C</span>
-            </div>
             <div>
-              <span className="font-display font-bold text-xl text-foreground">
-                conver<span className="text-accent">x</span>IA
-              </span>
+              <img
+                  src={group}
+                  alt="ConverxIA Logo"
+                  className="relative z-10 w-full max-w-md mx-auto"
+                />
               <p className="text-muted-foreground text-xs">
                 Convierte conversaciones en ventas
               </p>

@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react';
-import robotMascot from '@/assets/robot-mascot.png';
+import freepik_ from '@/assets/freepik__.svg';
 
 const RiskZero = () => {
   const guarantees = [
@@ -23,7 +23,7 @@ const RiskZero = () => {
               <div className="relative">
                 <div className="absolute inset-0 bg-accent/20 rounded-full blur-3xl" />
                 <img
-                  src={robotMascot}
+                  src={freepik_}
                   alt="ConverxIA Robot Mascot"
                   className="relative z-10 w-full max-w-md mx-auto animate-float"
                 />

@@ -20,7 +20,7 @@ const Channels = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto">
+        <div className="flex flex-nowrap justify-center gap-4 max-w-4xl mx-auto overflow-x-auto">
           {channels.map((channel, index) => (
             <div
               key={index}
