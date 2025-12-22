@@ -8,17 +8,15 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo + tagline */}
-          <div className="flex items-center gap-3">
-            <div>
-              <img
-                  src={group}
-                  alt="ConverxIA Logo"
-                  className="relative z-10 w-full max-w-md mx-auto"
-                />
-              <p className="text-muted-foreground text-xs">
-                Convierte conversaciones en ventas
-              </p>
-            </div>
+          <div className="flex flex-col items-start gap-2">
+            <img
+              src={group}
+              alt="ConverxIA Logo"
+              className="h-10 w-auto"
+            />
+            <p className="text-muted-foreground text-xs">
+              Convierte conversaciones en ventas
+            </p>
           </div>
 
           {/* Contact */}

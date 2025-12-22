@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
-import { Sparkles, Play, Clock, Settings, MessageSquare, CreditCard } from 'lucide-react';
+import { Sparkles, Play, Clock, Settings, MessageSquare, CreditCard } from 'lucide-react';  
+import group from '@/assets/group.svg';
 
 const Hero = () => {
   const trustChips = [
@@ -17,7 +18,16 @@ const Hero = () => {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
+        
+
         <div className="text-center max-w-5xl mx-auto">
+          <div className="flex justify-center mb-8 animate-fade-in">
+            <img
+              src={group}
+              alt="ConverxIA Logo"
+              className="h-20 w-auto md:h-24 lg:h-28 object-contain"
+            />
+          </div>
           {/* Eyebrow badge */}
           <div className="animate-fade-up">
             <span className="eyebrow-badge">
@@ -78,7 +88,7 @@ const Hero = () => {
           </div>
         
           {/* Trust chips */} 
-          <div className="mt-8 flex flex-row items-center justify-center gap-3 flex-nowrap animate-fade-up stagger-5">
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 animate-fade-up stagger-5">
             {trustChips.map((chip, index) => (
               <div key={index} className="chip whitespace-nowrap">
                 <chip.icon className="w-4 h-4 text-accent" />
