@@ -1,26 +1,22 @@
 import { useEffect } from 'react';
-import { useSearchParams, Link, useNavigate } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Check, Play, Gift, Calendar, ArrowRight, Lock, Sparkles, Star } from 'lucide-react';
+import { Check, Play, Lock, Sparkles, Star, Zap, Calendar, MessageSquare } from 'lucide-react';
 import { useFunnel } from '@/contexts/FunnelContext';
 import group from '@/assets/group.svg';
-import robotMascot from '@/assets/robot-mascot.png';
 
 const POSTPURCHASE_VIDEO_URL = '{{POSTPURCHASE_VIDEO_URL}}';
 
 const PostCompra = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const { setupPaid, setSetupPaid, annualUpsell, setAnnualUpsell, accompanyUpsell, setAccompanyUpsell } = useFunnel();
 
-  // Check for paid=true in URL (from checkout redirect)
   useEffect(() => {
     if (searchParams.get('paid') === 'true') {
       setSetupPaid(true);
     }
   }, [searchParams, setSetupPaid]);
 
-  // If not paid, show blocked message
   if (!setupPaid) {
     return (
       <div className="min-h-screen bg-background text-foreground bg-mesh flex items-center justify-center">
@@ -46,21 +42,32 @@ const PostCompra = () => {
     );
   }
 
-  const handleAnnualUpsell = () => {
+  const handleMax12 = () => {
     setAnnualUpsell(true);
   };
 
-  const handleAccompanyUpsell = () => {
+  const handleUltra12 = () => {
     setAnnualUpsell(true);
     setAccompanyUpsell(true);
   };
 
+  const max12Features = [
+    'Hasta 6 canales activos',
+    'Hasta 30 productos en tu agente recomendador',
+    'Contactos y equipo ilimitado',
+  ];
+
+  const ultra12Features = [
+    'Sesión técnica con el equipo: conexiones, hacks y mucho más',
+    'Sesión estratégica contigo (Martán): mensajes, estructura, oferta y cómo convertir conversaciones en ventas',
+    'Checklist final para que quede "listo para facturar"',
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground bg-mesh pb-24 md:pb-0">
-      {/* Background effects */}
       <div className="fixed inset-0 bg-dots opacity-20 pointer-events-none" />
       <div className="fixed top-0 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="fixed bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="fixed bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
       
       {/* Header */}
       <header className="relative z-10 py-6 border-b border-border/30 bg-background/50 backdrop-blur-xl">
@@ -73,6 +80,7 @@ const PostCompra = () => {
 
       <main className="relative z-10 py-12">
         <div className="container mx-auto px-4 max-w-4xl">
+          
           {/* Success Header */}
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-6 py-3 rounded-full mb-6 animate-pulse">
@@ -85,36 +93,17 @@ const PostCompra = () => {
             </h1>
             
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Tu Mes 1 PLUS ya está incluido. Completa el onboarding (10 min) para que nuestro equipo configure tu agente.
+              Por haber activado hoy, quiero darte una mejora especial para que tengas un modo de máximo rendimiento.
             </p>
           </div>
 
-          {/* Progress indicator */}
-          <div className="card-premium p-4 mb-8">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold">1</div>
-                <div>
-                  <span className="font-medium">Onboarding</span>
-                  <p className="text-xs text-muted-foreground">Cuéntanos de tu negocio</p>
-                </div>
-              </div>
-              <div className="hidden sm:flex items-center flex-1 mx-4">
-                <div className="h-1 flex-1 bg-muted rounded-full overflow-hidden">
-                  <div className="h-full w-1/3 bg-accent rounded-full" />
-                </div>
-              </div>
-              <span className="text-muted-foreground text-sm">Paso 1 de 3</span>
-            </div>
-          </div>
-
-          {/* Mini BSL Video */}
-          <div className="card-premium p-6 mb-8">
+          {/* Video Section */}
+          <div className="card-premium p-6 mb-10">
             <h2 className="font-display text-xl font-semibold mb-4 text-center">
-              Mira este video antes de continuar <span className="text-muted-foreground">(2-3 min)</span>
+              Mira este video, aquí te explico exactamente cómo funciona:
             </h2>
             <div className="aspect-video bg-background/50 rounded-2xl border border-border/30 flex items-center justify-center relative overflow-hidden group cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
               <div className="absolute inset-0 bg-dots opacity-20" />
               <div className="text-center z-10">
                 <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-glow-green">
@@ -125,117 +114,128 @@ const PostCompra = () => {
             </div>
           </div>
 
-          {/* Upsell Offers */}
-          <div className="space-y-6 mb-12">
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 text-primary mb-2">
-                <Star className="w-4 h-4" fill="currentColor" />
-                <span className="text-sm font-medium">Ofertas exclusivas para nuevos clientes</span>
-                <Star className="w-4 h-4" fill="currentColor" />
+          {/* Upsell Intro */}
+          <div className="text-center mb-8">
+            <p className="text-lg text-foreground/80">
+              Aquí te dejo un descuento increíble y con tu crédito aplicado.
+            </p>
+          </div>
+
+          {/* Upsell Cards */}
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            
+            {/* MAX 12 */}
+            <div className={`card-premium p-6 md:p-8 border-2 transition-all ${annualUpsell && !accompanyUpsell ? 'border-accent bg-accent/5' : 'border-accent/30 hover:border-accent/50'}`}>
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center gap-2 bg-accent/20 text-accent text-sm font-semibold px-4 py-1.5 rounded-full mb-3">
+                  <Zap className="w-4 h-4" />
+                  Licencia Anual
+                </div>
+                <h3 className="font-display text-2xl font-bold mb-1">Plan MAX 12</h3>
               </div>
-              <h2 className="font-display text-2xl md:text-3xl font-bold">
-                Potencia tu inversión
-              </h2>
+
+              <ul className="space-y-3 mb-6">
+                {max12Features.map((feature, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-accent" />
+                    </div>
+                    <span className="text-foreground/80">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="bg-background/50 rounded-xl p-4 mb-6 space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Valor especial de hoy:</span>
+                  <span className="text-foreground">$597</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Crédito por lo que ya pagaste:</span>
+                  <span className="text-accent">–$97</span>
+                </div>
+                <div className="border-t border-border/30 pt-2 flex justify-between">
+                  <span className="font-semibold">Pagas hoy:</span>
+                  <span className="font-display text-2xl font-bold text-accent">$500</span>
+                </div>
+              </div>
+
+              {annualUpsell && !accompanyUpsell ? (
+                <div className="flex items-center justify-center gap-2 text-accent py-3">
+                  <Check className="w-6 h-6" />
+                  <span className="font-semibold">Seleccionado</span>
+                </div>
+              ) : (
+                <Button variant="cta" size="lg" onClick={handleMax12} className="w-full gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  Activar MAX 12 ahora
+                </Button>
+              )}
+
+              <p className="text-center text-xs text-muted-foreground mt-4">
+                Upgrade inmediato. Tu cuenta queda MAX por 12 meses.
+              </p>
             </div>
 
-            {/* Upsell 1: Annual */}
-            <div className={`card-premium p-6 md:p-8 border-2 transition-all ${annualUpsell ? 'border-accent bg-accent/5' : 'border-primary/30 hover:border-primary/50'}`}>
-              <div className="flex flex-col md:flex-row items-start gap-6">
-                <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Gift className="w-8 h-8 text-primary" />
+            {/* ULTRA 12 */}
+            <div className={`card-premium p-6 md:p-8 border-2 transition-all ${accompanyUpsell ? 'border-accent bg-accent/5' : 'border-accent/30 hover:border-accent/50'}`}>
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center gap-2 bg-accent/20 text-accent text-sm font-semibold px-4 py-1.5 rounded-full mb-3">
+                  <Star className="w-4 h-4" fill="currentColor" />
+                  Licencia + Acompañamiento
                 </div>
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <h3 className="font-display text-xl font-bold">
-                      Bloquea 12 meses por $497
-                    </h3>
-                    <span className="bg-primary/20 text-primary text-xs font-semibold px-3 py-1 rounded-full">
-                      Ahorra +$600
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground mb-4">
-                    En vez de pagar mes a mes ($97 x 12 = $1,164), asegura un año completo con acceso a todas las funcionalidades PLUS por solo $497.
-                  </p>
-                  {annualUpsell ? (
-                    <div className="flex items-center gap-2 text-accent text-lg">
-                      <Check className="w-6 h-6" />
-                      <span className="font-semibold">Oferta seleccionada</span>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Button variant="cta" size="lg" onClick={handleAnnualUpsell} className="gap-2">
-                        <Sparkles className="w-4 h-4" />
-                        Sí, quiero 12 meses por $497
-                      </Button>
-                      <Button variant="ghost" className="text-muted-foreground">
-                        No gracias, prefiero mensual
-                      </Button>
-                    </div>
-                  )}
-                </div>
+                <h3 className="font-display text-2xl font-bold mb-1">ULTRA 12</h3>
               </div>
-            </div>
 
-            {/* Upsell 2: Accompany */}
-            <div className={`card-premium p-6 md:p-8 border-2 transition-all ${accompanyUpsell ? 'border-accent bg-accent/5' : 'border-primary/30 hover:border-primary/50'}`}>
-              <div className="flex flex-col md:flex-row items-start gap-6">
-                <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Calendar className="w-8 h-8 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <h3 className="font-display text-xl font-bold">
-                      Agrega acompañamiento por +$250
-                    </h3>
-                    <span className="bg-accent/20 text-accent text-xs font-semibold px-3 py-1 rounded-full">
-                      Total $747
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground mb-3">
-                    Incluye los 12 meses + acompañamiento personalizado:
-                  </p>
-                  <ul className="space-y-2 mb-4">
-                    <li className="flex items-center gap-3 text-foreground/90">
-                      <div className="w-5 h-5 bg-accent/20 rounded-full flex items-center justify-center">
-                        <Check className="w-3 h-3 text-accent" />
-                      </div>
-                      1 sesión técnica de configuración avanzada
-                    </li>
-                    <li className="flex items-center gap-3 text-foreground/90">
-                      <div className="w-5 h-5 bg-accent/20 rounded-full flex items-center justify-center">
-                        <Check className="w-3 h-3 text-accent" />
-                      </div>
-                      1 sesión estratégica con Martán para optimizar tu operación
-                    </li>
-                  </ul>
-                  {accompanyUpsell ? (
-                    <div className="flex items-center gap-2 text-accent text-lg">
-                      <Check className="w-6 h-6" />
-                      <span className="font-semibold">Oferta seleccionada</span>
+              <p className="text-sm text-muted-foreground mb-4 text-center">
+                Todo lo de MAX 12, más:
+              </p>
+
+              <ul className="space-y-3 mb-6">
+                {ultra12Features.map((feature, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-accent" />
                     </div>
-                  ) : (
-                    <Button variant="cta" size="lg" onClick={handleAccompanyUpsell} className="gap-2">
-                      <Sparkles className="w-4 h-4" />
-                      Sí, quiero 12 meses + acompañamiento ($747)
-                    </Button>
-                  )}
+                    <span className="text-foreground/80 text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="bg-background/50 rounded-xl p-4 mb-6 space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Valor ULTRA:</span>
+                  <span className="text-foreground">$750</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Crédito por lo que ya pagaste:</span>
+                  <span className="text-accent">–$97</span>
+                </div>
+                <div className="border-t border-border/30 pt-2 flex justify-between">
+                  <span className="font-semibold">Pagas hoy:</span>
+                  <span className="font-display text-2xl font-bold text-accent">$653</span>
                 </div>
               </div>
+
+              {accompanyUpsell ? (
+                <div className="flex items-center justify-center gap-2 text-accent py-3">
+                  <Check className="w-6 h-6" />
+                  <span className="font-semibold">Seleccionado</span>
+                </div>
+              ) : (
+                <Button variant="cta" size="lg" onClick={handleUltra12} className="w-full gap-2">
+                  <Calendar className="w-4 h-4" />
+                  Quiero ULTRA 12 (con acompañamiento)
+                </Button>
+              )}
             </div>
           </div>
 
-          {/* CTAs */}
-          <div className="space-y-4">
-            <Link to="/onboarding" className="block">
-              <Button variant="cta" size="xl" className="w-full gap-3 text-lg">
-                Completar onboarding ahora
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
-            
-            <Link to="/seleccionar-plan" className="block">
-              <Button variant="outline" className="w-full">
-                Elegir plan Mes 2 después
+          {/* Continue without upsell */}
+          <div className="text-center">
+            <Link to="/onboarding">
+              <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
+                Continuar sin upgrade →
               </Button>
             </Link>
           </div>
@@ -246,8 +246,8 @@ const PostCompra = () => {
       <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-background/95 backdrop-blur-xl border-t border-border/50 md:hidden">
         <Link to="/onboarding">
           <Button variant="cta" className="w-full gap-2" size="lg">
-            Completar onboarding
-            <ArrowRight className="w-4 h-4" />
+            <MessageSquare className="w-4 h-4" />
+            Continuar al onboarding
           </Button>
         </Link>
       </div>
