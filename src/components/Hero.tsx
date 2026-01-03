@@ -38,7 +38,8 @@ const Hero = () => {
 
           {/* Main headline */}
           <h1 className="mt-8 font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-up stagger-1">
-            Convierte <span className="text-accent text-glow-green">conversaciones</span> en ventas,
+            Convierte <span className="text-accent text-glow-green">conversaciones</span>{' '}
+            <span className="whitespace-nowrap">en ventas,</span>
             <br />
             sin estar pegado al celular.
           </h1>
