@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Check, X, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Comparison = () => {
   const withoutItems = [
@@ -74,10 +75,12 @@ const Comparison = () => {
               ))}
             </ul>
 
-            <Button variant="cta" className="w-full mt-8 gap-2">
-              <Sparkles className="w-4 h-4" />
-              Activar mi Agente IA
-            </Button>
+            <Link to="/post-compra">
+              <Button variant="cta" className="w-full mt-8 gap-2">
+                <Sparkles className="w-4 h-4" />
+                Activar mi Agente IA
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

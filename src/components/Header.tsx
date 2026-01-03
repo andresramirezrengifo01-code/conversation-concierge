@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,10 +39,12 @@ const Header = () => {
             <span className="text-xs text-muted-foreground hidden sm:block">
               Setup $97 (incluye 1er mes)
             </span>
-            <Button variant="cta" size="lg" className="gap-2">
-              <Sparkles className="w-4 h-4" />
-              Activar mi Agente IA
-            </Button>
+            <Link to="/post-compra">
+              <Button variant="cta" size="lg" className="gap-2">
+                <Sparkles className="w-4 h-4" />
+                Activar mi Agente IA
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

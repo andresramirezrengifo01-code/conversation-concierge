@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const FinalCTA = () => {
   return (
@@ -15,10 +16,12 @@ const FinalCTA = () => {
             <span className="text-accent text-glow-green">Cierra más conversaciones.</span>
           </h2>
 
-          <Button variant="cta" size="xl" className="gap-2">
-            <Sparkles className="w-5 h-5" />
-            Activar mi Agente IA
-          </Button>
+          <Link to="/post-compra">
+            <Button variant="cta" size="xl" className="gap-2">
+              <Sparkles className="w-5 h-5" />
+              Activar mi Agente IA
+            </Button>
+          </Link>
 
           <p className="mt-6 text-muted-foreground text-sm">
             Setup incluye 1er mes • Cero técnico • Sin contratos
