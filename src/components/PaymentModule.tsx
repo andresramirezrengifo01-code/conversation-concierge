@@ -30,10 +30,12 @@ const PaymentModule = () => {
     'Agente de IA Empática que atiende, vende y hace seguimiento',
     'Bandeja Unificada para gestionar todas las conversaciones',
     'CRM Integrado (contactos, historial, etiquetas, pipelines)',
-    'Estadísticas de rendimiento y conversiones',
-    'Campañas por Chat (envío masivo)',
+    'Estadísticas de rendimiento y conversiones en tiempo real',
+    'Campañas por Chat para envío masivo a contactos',
     'Herramientas avanzadas (flujos, GPT, automatizaciones)',
-    'ConverxIA Academy completo',
+    'Acceso completo a ConverxIA Academy',
+    'Integraciones con pasarelas de pago y herramientas externas',
+    'Soporte prioritario vía chat y correo electrónico',
   ];
 
   const plans = [
