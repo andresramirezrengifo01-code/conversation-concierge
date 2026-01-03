@@ -23,7 +23,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="como-funciona" className="py-24 relative">
+    <section id="como-funciona" className="py-14 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/30 to-background" />
       
       <div className="container mx-auto px-4 relative z-10">

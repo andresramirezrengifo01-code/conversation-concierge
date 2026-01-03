@@ -81,7 +81,7 @@ const PaymentModule = () => {
   ];
 
   return (
-    <section id="pago" className="py-20 relative">
+    <section id="pago" className="py-14 relative">
       <div className="container mx-auto px-4">
         
         {/* Main Title - Outside the card */}
