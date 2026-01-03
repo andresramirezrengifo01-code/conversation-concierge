@@ -2,13 +2,22 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import group from '@/assets/group.svg';
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      // Find the VSL container and show header after scrolling past it
+      const vslContainer = document.querySelector('.vsl-container');
+      if (vslContainer) {
+        const vslBottom = vslContainer.getBoundingClientRect().bottom;
+        setIsVisible(vslBottom < 0);
+      } else {
+        // Fallback: show after 600px scroll
+        setIsVisible(window.scrollY > 600);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -17,21 +26,20 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/80 backdrop-blur-xl border-b border-border/50'
-          : 'bg-transparent'
+        isVisible
+          ? 'bg-background/80 backdrop-blur-xl border-b border-border/50 translate-y-0'
+          : '-translate-y-full'
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-              <span className="text-accent-foreground font-bold text-lg">C</span>
-            </div>
-            <span className="font-display font-bold text-xl text-foreground">
-              conver<span className="text-accent">x</span>IA
-            </span>
+          <a href="#" className="flex items-center">
+            <img
+              src={group}
+              alt="ConverxIA Logo"
+              className="h-6 w-auto object-contain"
+            />
           </a>
 
           {/* CTA + Trust */}
