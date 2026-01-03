@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Sparkles, Play, Clock, Settings, MessageSquare, CreditCard } from 'lucide-react';  
+import { Link } from 'react-router-dom';
 import group from '@/assets/group.svg';
 
 const Hero = () => {
@@ -50,10 +51,12 @@ const Hero = () => {
 
           {/* CTAs */}
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up stagger-3">
-            <Button variant="cta" size="xl" className="w-full sm:w-auto gap-2">
-              <Sparkles className="w-5 h-5" />
-              Activar mi Agente IA
-            </Button>
+            <Link to="/post-compra">
+              <Button variant="cta" size="xl" className="w-full sm:w-auto gap-2">
+                <Sparkles className="w-5 h-5" />
+                Activar mi Agente IA
+              </Button>
+            </Link>
             <Button variant="secondary-dark" size="xl" className="w-full sm:w-auto gap-2">
               <Play className="w-5 h-5" />
               Ver cómo funciona (2 min)
