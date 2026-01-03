@@ -86,12 +86,6 @@ const PaymentModule = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-3">
-            Activa ya tu cuenta
-          </h2>
-          <p className="text-xl text-muted-foreground mb-6">
-            Sin aprender nada técnico
-          </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
             <span className="flex items-center gap-2">
               <Users className="w-4 h-4 text-accent" />
@@ -110,8 +104,10 @@ const PaymentModule = () => {
             <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-40 h-40 bg-accent/30 rounded-full blur-3xl" />
             
             <div className="relative">
-              {/* Badge */}
-              <div className="flex justify-center mb-6">
+              {/* Step indicator + Badge */}
+              <div className="flex flex-col items-center gap-3 mb-6">
+                <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Paso 1</span>
+                <h2 className="font-display text-2xl md:text-3xl font-bold">Activa tu cuenta</h2>
                 <span className="bg-accent text-accent-foreground text-sm font-bold px-5 py-2 rounded-full">
                   SETUP INICIAL DE ACTIVACIÓN
                 </span>
@@ -168,31 +164,17 @@ const PaymentModule = () => {
           </div>
         </div>
 
-        {/* What All Plans Include */}
-        <div className="max-w-4xl mx-auto mb-12">
-          <h3 className="font-display text-xl md:text-2xl font-semibold text-center mb-6">
-            Todos los planes incluyen:
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {allPlansInclude.map((feature, index) => (
-              <div key={index} className="flex items-start gap-3 p-3 rounded-xl bg-card/30">
-                <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3 h-3 text-accent" />
-                </div>
-                <span className="text-sm text-foreground/80">{feature}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Plans Comparison Table */}
+        {/* STEP 2: Plans Comparison Table */}
         <div className="max-w-5xl mx-auto">
-          <h3 className="font-display text-xl md:text-2xl font-semibold text-center mb-2">
-            Selecciona tu plan
-          </h3>
-          <p className="text-center text-muted-foreground mb-8">
-            Sin compromisos. El día 30 decides con qué plan continúas.
-          </p>
+          <div className="flex flex-col items-center gap-2 mb-8">
+            <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Paso 2 · Después del primer mes</span>
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-center">
+              Selecciona tu plan
+            </h3>
+            <p className="text-center text-muted-foreground">
+              Sin compromisos. El día 30 decides con qué plan continúas.
+            </p>
+          </div>
 
           {/* Desktop Table */}
           <div className="hidden md:block card-premium overflow-hidden">
@@ -302,18 +284,36 @@ const PaymentModule = () => {
             ))}
           </div>
 
-          {/* Single CTA Button */}
-          <div className="mt-10">
-            <Link to="/post-compra" className="block max-w-md mx-auto">
-              <Button variant="cta" size="xl" className="w-full gap-2 text-lg py-6">
-                <Sparkles className="w-5 h-5" />
-                Activar mi Agente IA
-              </Button>
-            </Link>
-            <p className="text-center text-sm text-muted-foreground mt-4">
-              Sin compromisos. El día 30 decides con qué plan continúas.
-            </p>
+        </div>
+
+        {/* What All Plans Include - Now below plans */}
+        <div className="max-w-4xl mx-auto mt-12 mb-10">
+          <h3 className="font-display text-xl md:text-2xl font-semibold text-center mb-6">
+            Todos los planes incluyen:
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {allPlansInclude.map((feature, index) => (
+              <div key={index} className="flex items-start gap-3 p-3 rounded-xl bg-card/30">
+                <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Check className="w-3 h-3 text-accent" />
+                </div>
+                <span className="text-sm text-foreground/80">{feature}</span>
+              </div>
+            ))}
           </div>
+        </div>
+
+        {/* Single CTA Button */}
+        <div className="max-w-md mx-auto">
+          <Link to="/post-compra" className="block">
+            <Button variant="cta" size="xl" className="w-full gap-2 text-lg py-6">
+              <Sparkles className="w-5 h-5" />
+              Activar mi Agente IA
+            </Button>
+          </Link>
+          <p className="text-center text-sm text-muted-foreground mt-4">
+            Sin compromisos. El día 30 decides con qué plan continúas.
+          </p>
         </div>
       </div>
     </section>
