@@ -46,7 +46,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-up stagger-2">
-            ConverxIA responde en segundos 24/7 con el tono de tu marca, hace seguimiento y guía al cliente a agendar o pagar.{' '}
+            ConverxIA responde en segundos 24/7 con el tono de tu marca, hace seguimiento y guía a tus clientes.{' '}
             <span className="text-foreground">Si hace falta, tu equipo toma el control en un clic.</span>
           </p>
         </div>

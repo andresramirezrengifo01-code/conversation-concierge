@@ -20,7 +20,7 @@ const CementerioWhatsApp = () => {
   ];
 
   return (
-    <section className="py-20 relative">
+    <section className="py-12 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 mb-4">

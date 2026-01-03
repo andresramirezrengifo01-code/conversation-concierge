@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const FinalCTA = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-14 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-t from-accent/10 via-transparent to-transparent" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent/10 rounded-full blur-3xl" />
