@@ -231,26 +231,8 @@ const PostCompra = () => {
             </div>
           </div>
 
-          {/* Continue without upsell */}
-          <div className="text-center">
-            <Link to="/onboarding">
-              <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
-                Continuar sin upgrade →
-              </Button>
-            </Link>
-          </div>
         </div>
       </main>
-
-      {/* Sticky CTA Mobile */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-background/95 backdrop-blur-xl border-t border-border/50 md:hidden">
-        <Link to="/onboarding">
-          <Button variant="cta" className="w-full gap-2" size="lg">
-            <MessageSquare className="w-4 h-4" />
-            Continuar al onboarding
-          </Button>
-        </Link>
-      </div>
     </div>
   );
 };
