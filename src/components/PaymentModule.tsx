@@ -12,15 +12,10 @@ import {
 } from '@/components/ui/table';
 
 const PaymentModule = () => {
-  const { setSelectedPlan } = useFunnel();
+  const { selectedPlan, setSelectedPlan } = useFunnel();
 
   const handleSelectPlan = (plan: 'PRO' | 'PLUS' | 'MAX') => {
     setSelectedPlan(plan);
-    // Scroll to setup section
-    const setupSection = document.getElementById('setup-activacion');
-    if (setupSection) {
-      setupSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
   };
 
   const setupFeatures = [
@@ -269,35 +264,38 @@ const PaymentModule = () => {
                   <TableCell className="text-center py-4">Equipo ilimitado</TableCell>
                 </TableRow>
                 <TableRow className="border-border/30 hover:bg-transparent">
-                  <TableCell className="py-6">
-                    <Button 
-                      variant="secondary-dark" 
-                      className="w-full"
-                      onClick={() => handleSelectPlan('PRO')}
-                    >
-                      <Sparkles className="w-4 h-4 mr-2" />
-                      Activar con PRO
-                    </Button>
+                  <TableCell 
+                    className={`py-6 cursor-pointer transition-all ${selectedPlan === 'PRO' ? 'bg-accent/20 ring-2 ring-accent ring-inset' : 'hover:bg-card/50'}`}
+                    onClick={() => handleSelectPlan('PRO')}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedPlan === 'PRO' ? 'border-accent bg-accent' : 'border-muted-foreground'}`}>
+                        {selectedPlan === 'PRO' && <Check className="w-3 h-3 text-accent-foreground" />}
+                      </div>
+                      <span className="font-medium">Seleccionar PRO</span>
+                    </div>
                   </TableCell>
-                  <TableCell className="py-6 bg-accent/5 border-x border-accent/10">
-                    <Button 
-                      variant="cta" 
-                      className="w-full"
-                      onClick={() => handleSelectPlan('PLUS')}
-                    >
-                      <Sparkles className="w-4 h-4 mr-2" />
-                      Activar con PLUS
-                    </Button>
+                  <TableCell 
+                    className={`py-6 cursor-pointer transition-all border-x border-accent/10 ${selectedPlan === 'PLUS' ? 'bg-accent/20 ring-2 ring-accent ring-inset' : 'bg-accent/5 hover:bg-accent/10'}`}
+                    onClick={() => handleSelectPlan('PLUS')}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedPlan === 'PLUS' ? 'border-accent bg-accent' : 'border-muted-foreground'}`}>
+                        {selectedPlan === 'PLUS' && <Check className="w-3 h-3 text-accent-foreground" />}
+                      </div>
+                      <span className="font-medium">Seleccionar PLUS</span>
+                    </div>
                   </TableCell>
-                  <TableCell className="py-6">
-                    <Button 
-                      variant="secondary-dark" 
-                      className="w-full"
-                      onClick={() => handleSelectPlan('MAX')}
-                    >
-                      <Sparkles className="w-4 h-4 mr-2" />
-                      Activar con MAX
-                    </Button>
+                  <TableCell 
+                    className={`py-6 cursor-pointer transition-all ${selectedPlan === 'MAX' ? 'bg-accent/20 ring-2 ring-accent ring-inset' : 'hover:bg-card/50'}`}
+                    onClick={() => handleSelectPlan('MAX')}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedPlan === 'MAX' ? 'border-accent bg-accent' : 'border-muted-foreground'}`}>
+                        {selectedPlan === 'MAX' && <Check className="w-3 h-3 text-accent-foreground" />}
+                      </div>
+                      <span className="font-medium">Seleccionar MAX</span>
+                    </div>
                   </TableCell>
                 </TableRow>
               </TableBody>
@@ -338,14 +336,19 @@ const PaymentModule = () => {
                     </li>
                   ))}
                 </ul>
-                <Button 
-                  variant={plan.popular ? 'cta' : 'secondary-dark'} 
-                  className="w-full"
+                <button 
+                  className={`w-full py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${
+                    selectedPlan === plan.name 
+                      ? 'bg-accent text-accent-foreground' 
+                      : 'bg-card/50 border border-border hover:border-accent/50'
+                  }`}
                   onClick={() => handleSelectPlan(plan.name as 'PRO' | 'PLUS' | 'MAX')}
                 >
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Activar con {plan.name}
-                </Button>
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedPlan === plan.name ? 'border-accent-foreground bg-accent-foreground' : 'border-muted-foreground'}`}>
+                    {selectedPlan === plan.name && <Check className="w-3 h-3 text-accent" />}
+                  </div>
+                  {selectedPlan === plan.name ? 'Plan seleccionado' : `Seleccionar ${plan.name}`}
+                </button>
               </div>
             ))}
           </div>
