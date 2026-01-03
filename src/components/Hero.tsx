@@ -37,7 +37,7 @@ const Hero = () => {
           </div>
 
           {/* Main headline */}
-          <h1 className="mt-8 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-up stagger-1">
+          <h1 className="mt-8 font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-up stagger-1">
             Convierte <span className="text-accent text-glow-green">conversaciones</span> en ventas,
             <br className="hidden sm:block" />
             sin estar pegado al celular.
