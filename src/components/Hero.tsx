@@ -26,7 +26,7 @@ const Hero = () => {
             <img
               src={group}
               alt="ConverxIA Logo"
-              className="h-20 w-auto md:h-24 lg:h-28 object-contain"
+              className="h-6 w-auto md:h-7 lg:h-8 object-contain"
             />
           </div>
           {/* Eyebrow badge */}

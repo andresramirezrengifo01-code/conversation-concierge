@@ -24,11 +24,11 @@ const CementerioWhatsApp = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 mb-4">
-            <Skull className="w-6 h-6 text-primary" />
-            <span className="text-primary font-medium">¿Te suena familiar?</span>
+            <Skull className="w-6 h-6 text-accent" />
+            <span className="text-accent font-medium">¿Te suena familiar?</span>
           </div>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold">
-            Bienvenido al <span className="text-primary">cementerio</span> de WhatsApp
+            Bienvenido al <span className="text-accent">cementerio</span> de WhatsApp
           </h2>
           <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
             Donde mueren las ventas que pudieron ser tuyas
@@ -41,8 +41,8 @@ const CementerioWhatsApp = () => {
               key={index}
               className="card-premium card-premium-hover p-6 text-center"
             >
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <problem.icon className="w-7 h-7 text-primary" />
+              <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <problem.icon className="w-7 h-7 text-accent" />
               </div>
               <h3 className="font-display text-xl font-semibold mb-2">
                 {problem.title}
