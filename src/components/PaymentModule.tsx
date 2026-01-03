@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Check, Sparkles, Shield, Zap, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useFunnel } from '@/contexts/FunnelContext';
 import {
   Table,
   TableBody,
@@ -12,11 +11,6 @@ import {
 } from '@/components/ui/table';
 
 const PaymentModule = () => {
-  const { selectedPlan, setSelectedPlan } = useFunnel();
-
-  const handleSelectPlan = (plan: 'PRO' | 'PLUS' | 'MAX') => {
-    setSelectedPlan(plan);
-  };
 
   const setupFeatures = [
     'Activación completa de tu cuenta ConverxIA',
@@ -263,41 +257,6 @@ const PaymentModule = () => {
                   <TableCell className="text-center py-4 bg-accent/5 border-x border-accent/10">Equipo ilimitado</TableCell>
                   <TableCell className="text-center py-4">Equipo ilimitado</TableCell>
                 </TableRow>
-                <TableRow className="border-border/30 hover:bg-transparent">
-                  <TableCell 
-                    className={`py-6 cursor-pointer transition-all ${selectedPlan === 'PRO' ? 'bg-accent/20 ring-2 ring-accent ring-inset' : 'hover:bg-card/50'}`}
-                    onClick={() => handleSelectPlan('PRO')}
-                  >
-                    <div className="flex items-center justify-center gap-2">
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedPlan === 'PRO' ? 'border-accent bg-accent' : 'border-muted-foreground'}`}>
-                        {selectedPlan === 'PRO' && <Check className="w-3 h-3 text-accent-foreground" />}
-                      </div>
-                      <span className="font-medium">Seleccionar PRO</span>
-                    </div>
-                  </TableCell>
-                  <TableCell 
-                    className={`py-6 cursor-pointer transition-all border-x border-accent/10 ${selectedPlan === 'PLUS' ? 'bg-accent/20 ring-2 ring-accent ring-inset' : 'bg-accent/5 hover:bg-accent/10'}`}
-                    onClick={() => handleSelectPlan('PLUS')}
-                  >
-                    <div className="flex items-center justify-center gap-2">
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedPlan === 'PLUS' ? 'border-accent bg-accent' : 'border-muted-foreground'}`}>
-                        {selectedPlan === 'PLUS' && <Check className="w-3 h-3 text-accent-foreground" />}
-                      </div>
-                      <span className="font-medium">Seleccionar PLUS</span>
-                    </div>
-                  </TableCell>
-                  <TableCell 
-                    className={`py-6 cursor-pointer transition-all ${selectedPlan === 'MAX' ? 'bg-accent/20 ring-2 ring-accent ring-inset' : 'hover:bg-card/50'}`}
-                    onClick={() => handleSelectPlan('MAX')}
-                  >
-                    <div className="flex items-center justify-center gap-2">
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedPlan === 'MAX' ? 'border-accent bg-accent' : 'border-muted-foreground'}`}>
-                        {selectedPlan === 'MAX' && <Check className="w-3 h-3 text-accent-foreground" />}
-                      </div>
-                      <span className="font-medium">Seleccionar MAX</span>
-                    </div>
-                  </TableCell>
-                </TableRow>
               </TableBody>
             </Table>
           </div>
@@ -328,7 +287,7 @@ const PaymentModule = () => {
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">{plan.tagline}</p>
                 </div>
-                <ul className="space-y-2 mb-4">
+                <ul className="space-y-2">
                   {plan.features.map((feature, fIndex) => (
                     <li key={fIndex} className="flex items-start gap-2 text-sm">
                       <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
@@ -336,26 +295,22 @@ const PaymentModule = () => {
                     </li>
                   ))}
                 </ul>
-                <button 
-                  className={`w-full py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${
-                    selectedPlan === plan.name 
-                      ? 'bg-accent text-accent-foreground' 
-                      : 'bg-card/50 border border-border hover:border-accent/50'
-                  }`}
-                  onClick={() => handleSelectPlan(plan.name as 'PRO' | 'PLUS' | 'MAX')}
-                >
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedPlan === plan.name ? 'border-accent-foreground bg-accent-foreground' : 'border-muted-foreground'}`}>
-                    {selectedPlan === plan.name && <Check className="w-3 h-3 text-accent" />}
-                  </div>
-                  {selectedPlan === plan.name ? 'Plan seleccionado' : `Seleccionar ${plan.name}`}
-                </button>
               </div>
             ))}
           </div>
 
-          <p className="text-center text-sm text-muted-foreground mt-6">
-            Sin compromisos. El día 30 decides con qué plan continúas.
-          </p>
+          {/* Single CTA Button */}
+          <div className="mt-10">
+            <Link to="/checkout" className="block max-w-md mx-auto">
+              <Button variant="cta" size="xl" className="w-full gap-2 text-lg py-6">
+                <Sparkles className="w-5 h-5" />
+                Activar mi Agente IA
+              </Button>
+            </Link>
+            <p className="text-center text-sm text-muted-foreground mt-4">
+              Sin compromisos. El día 30 decides con qué plan continúas.
+            </p>
+          </div>
         </div>
       </div>
     </section>
