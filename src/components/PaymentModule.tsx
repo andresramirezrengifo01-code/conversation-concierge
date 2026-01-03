@@ -35,7 +35,7 @@ const PaymentModule = () => {
     'Herramientas avanzadas (flujos, GPT, automatizaciones)',
     'Acceso completo a ConverxIA Academy',
     'Notificaciones cuando tu equipo debe intervenir',
-    'Configuración sin código, todo visual y simple',
+    'Tú no configuras ni aprendes nada técnico, nosotros lo hacemos todo',
   ];
 
   const plans = [
@@ -104,10 +104,10 @@ const PaymentModule = () => {
             <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-40 h-40 bg-accent/30 rounded-full blur-3xl" />
             
             <div className="relative">
-              {/* Step indicator + Badge */}
+              {/* Title + Badge */}
               <div className="flex flex-col items-center gap-3 mb-6">
-                <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Paso 1</span>
                 <h2 className="font-display text-2xl md:text-3xl font-bold">Activa tu cuenta</h2>
+                <p className="text-lg text-muted-foreground">Dejamos tu cuenta lista para operar sin que hagas nada técnico</p>
                 <span className="bg-accent text-accent-foreground text-sm font-bold px-5 py-2 rounded-full">
                   SETUP INICIAL DE ACTIVACIÓN
                 </span>
@@ -164,15 +164,14 @@ const PaymentModule = () => {
           </div>
         </div>
 
-        {/* STEP 2: Plans Comparison Table */}
+        {/* Plans Comparison Table */}
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col items-center gap-2 mb-8">
-            <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Paso 2 · Después del primer mes</span>
             <h3 className="font-display text-2xl md:text-3xl font-bold text-center">
               Selecciona tu plan
             </h3>
             <p className="text-center text-muted-foreground">
-              Sin compromisos. El día 30 decides con qué plan continúas.
+              Después del primer mes. Sin compromisos, el día 30 decides con qué plan continúas.
             </p>
           </div>
 
