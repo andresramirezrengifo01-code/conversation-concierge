@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Check, Sparkles, Shield, Zap, Users } from 'lucide-react';
-import { Link } from 'react-router-dom';
+
 import {
   Table,
   TableBody,
@@ -142,13 +142,13 @@ const PaymentModule = () => {
                 ))}
               </div>
 
-              {/* CTA Button */}
-              <Link to="/checkout" className="block max-w-md mx-auto">
+              {/* CTA Button - will link to payment gateway */}
+              <a href="{{CHECKOUT_URL}}" className="block max-w-md mx-auto">
                 <Button variant="cta" size="xl" className="w-full gap-2 text-lg py-6">
                   <Sparkles className="w-5 h-5" />
                   Activar mi Agente IA
                 </Button>
-              </Link>
+              </a>
 
               {/* Trust */}
               <div className="flex items-center justify-center gap-6 mt-5 text-sm text-muted-foreground">
@@ -301,12 +301,12 @@ const PaymentModule = () => {
 
           {/* Single CTA Button */}
           <div className="mt-10">
-            <Link to="/checkout" className="block max-w-md mx-auto">
+            <a href="{{CHECKOUT_URL}}" className="block max-w-md mx-auto">
               <Button variant="cta" size="xl" className="w-full gap-2 text-lg py-6">
                 <Sparkles className="w-5 h-5" />
                 Activar mi Agente IA
               </Button>
-            </Link>
+            </a>
             <p className="text-center text-sm text-muted-foreground mt-4">
               Sin compromisos. El día 30 decides con qué plan continúas.
             </p>
