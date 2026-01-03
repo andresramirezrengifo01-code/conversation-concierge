@@ -34,8 +34,8 @@ const PaymentModule = () => {
     'Campañas por Chat para envío masivo a contactos',
     'Herramientas avanzadas (flujos, GPT, automatizaciones)',
     'Acceso completo a ConverxIA Academy',
-    'Integraciones con pasarelas de pago y herramientas externas',
-    'Soporte prioritario vía chat y correo electrónico',
+    'Notificaciones cuando tu equipo debe intervenir',
+    'Configuración sin código, todo visual y simple',
   ];
 
   const plans = [
