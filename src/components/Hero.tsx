@@ -12,7 +12,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-screen pt-32 pb-20 overflow-hidden bg-mesh">
+    <section className="relative min-h-screen pt-8 pb-20 overflow-hidden bg-mesh">
       {/* Background effects */}
       <div className="absolute inset-0 bg-dots opacity-30" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
@@ -38,9 +38,9 @@ const Hero = () => {
 
           {/* Main headline */}
           <h1 className="mt-8 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-up stagger-1">
-            Convierte{' '}
-            <span className="text-accent text-glow-green">conversaciones</span>{' '}
-            en ventas, sin estar pegado al celular.
+            Convierte <span className="text-accent text-glow-green">conversaciones</span> en ventas,
+            <br className="hidden sm:block" />
+            sin estar pegado al celular.
           </h1>
 
           {/* Subheadline */}
@@ -48,22 +48,6 @@ const Hero = () => {
             ConverxIA responde en segundos 24/7 con el tono de tu marca, hace seguimiento y guía al cliente a agendar o pagar.{' '}
             <span className="text-foreground">Si hace falta, tu equipo toma el control en un clic.</span>
           </p>
-
-          {/* CTAs */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up stagger-3">
-            <Link to="/post-compra">
-              <Button variant="cta" size="xl" className="w-full sm:w-auto gap-2">
-                <Sparkles className="w-5 h-5" />
-                Activar mi Agente IA
-              </Button>
-            </Link>
-            <Button variant="secondary-dark" size="xl" className="w-full sm:w-auto gap-2">
-              <Play className="w-5 h-5" />
-              Ver cómo funciona (2 min)
-            </Button>
-          </div>
-
-          {/* Trust chips */} 
         </div>
 
         {/* VSL Container */}
@@ -98,6 +82,16 @@ const Hero = () => {
                 <span className="text-foreground/80">{chip.label}</span>
               </div>
             ))}
+          </div>
+
+          {/* CTA */}
+          <div className="mt-8 flex justify-center animate-fade-up stagger-3">
+            <Link to="/post-compra">
+              <Button variant="cta" size="xl" className="gap-2">
+                <Sparkles className="w-5 h-5" />
+                Activar mi Agente IA
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
