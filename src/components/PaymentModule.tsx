@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Check, Sparkles, Shield, Zap, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useFunnel } from '@/contexts/FunnelContext';
 import {
   Table,
   TableBody,
@@ -11,6 +12,17 @@ import {
 } from '@/components/ui/table';
 
 const PaymentModule = () => {
+  const { setSelectedPlan } = useFunnel();
+
+  const handleSelectPlan = (plan: 'PRO' | 'PLUS' | 'MAX') => {
+    setSelectedPlan(plan);
+    // Scroll to setup section
+    const setupSection = document.getElementById('setup-activacion');
+    if (setupSection) {
+      setupSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   const setupFeatures = [
     'Activación completa de tu cuenta ConverxIA',
     'Configuración de tu Panel ConverxIA Launch (agente empático listo para operar)',
@@ -101,7 +113,7 @@ const PaymentModule = () => {
         </div>
 
         {/* STEP 1: Setup Inicial */}
-        <div className="max-w-4xl mx-auto mb-16">
+        <div id="setup-activacion" className="max-w-4xl mx-auto mb-16">
           <div className="card-premium p-8 md:p-10 border-2 border-accent/40 bg-gradient-to-b from-accent/10 to-transparent relative overflow-hidden">
             <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-40 h-40 bg-accent/30 rounded-full blur-3xl" />
             
@@ -256,6 +268,38 @@ const PaymentModule = () => {
                   <TableCell className="text-center py-4 bg-accent/5 border-x border-accent/10">Equipo ilimitado</TableCell>
                   <TableCell className="text-center py-4">Equipo ilimitado</TableCell>
                 </TableRow>
+                <TableRow className="border-border/30 hover:bg-transparent">
+                  <TableCell className="py-6">
+                    <Button 
+                      variant="secondary-dark" 
+                      className="w-full"
+                      onClick={() => handleSelectPlan('PRO')}
+                    >
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Activar con PRO
+                    </Button>
+                  </TableCell>
+                  <TableCell className="py-6 bg-accent/5 border-x border-accent/10">
+                    <Button 
+                      variant="cta" 
+                      className="w-full"
+                      onClick={() => handleSelectPlan('PLUS')}
+                    >
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Activar con PLUS
+                    </Button>
+                  </TableCell>
+                  <TableCell className="py-6">
+                    <Button 
+                      variant="secondary-dark" 
+                      className="w-full"
+                      onClick={() => handleSelectPlan('MAX')}
+                    >
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Activar con MAX
+                    </Button>
+                  </TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </div>
@@ -286,7 +330,7 @@ const PaymentModule = () => {
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">{plan.tagline}</p>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-2 mb-4">
                   {plan.features.map((feature, fIndex) => (
                     <li key={fIndex} className="flex items-start gap-2 text-sm">
                       <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
@@ -294,6 +338,14 @@ const PaymentModule = () => {
                     </li>
                   ))}
                 </ul>
+                <Button 
+                  variant={plan.popular ? 'cta' : 'secondary-dark'} 
+                  className="w-full"
+                  onClick={() => handleSelectPlan(plan.name as 'PRO' | 'PLUS' | 'MAX')}
+                >
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Activar con {plan.name}
+                </Button>
               </div>
             ))}
           </div>
