@@ -35,7 +35,7 @@ const PaymentModule = () => {
     'Herramientas avanzadas (flujos, GPT, automatizaciones)',
     'Acceso completo a ConverxIA Academy',
     'Notificaciones cuando tu equipo debe intervenir',
-    'Tú no configuras ni aprendes nada técnico, nosotros lo hacemos todo',
+    'Administración de IA sin código y sin conocimientos técnicos, fácil y rápido',
   ];
 
   const plans = [
@@ -84,7 +84,13 @@ const PaymentModule = () => {
     <section id="pago" className="py-20 relative">
       <div className="container mx-auto px-4">
         
-        {/* Header */}
+        {/* Main Title - Outside the card */}
+        <div className="text-center max-w-3xl mx-auto mb-8">
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-3">Activa tu cuenta</h2>
+          <p className="text-lg text-muted-foreground">Dejamos tu cuenta lista para operar sin que hagas nada técnico</p>
+        </div>
+
+        {/* Trust badges */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
             <span className="flex items-center gap-2">
@@ -104,10 +110,8 @@ const PaymentModule = () => {
             <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-40 h-40 bg-accent/30 rounded-full blur-3xl" />
             
             <div className="relative">
-              {/* Title + Badge */}
+              {/* Badge only */}
               <div className="flex flex-col items-center gap-3 mb-6">
-                <h2 className="font-display text-2xl md:text-3xl font-bold">Activa tu cuenta</h2>
-                <p className="text-lg text-muted-foreground">Dejamos tu cuenta lista para operar sin que hagas nada técnico</p>
                 <span className="bg-accent text-accent-foreground text-sm font-bold px-5 py-2 rounded-full">
                   SETUP INICIAL DE ACTIVACIÓN
                 </span>
@@ -167,11 +171,12 @@ const PaymentModule = () => {
         {/* Plans Comparison Table */}
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col items-center gap-2 mb-8">
+            <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Después del primer mes</span>
             <h3 className="font-display text-2xl md:text-3xl font-bold text-center">
               Selecciona tu plan
             </h3>
             <p className="text-center text-muted-foreground">
-              Después del primer mes. Sin compromisos, el día 30 decides con qué plan continúas.
+              Sin compromisos, el día 30 decides con qué plan continúas.
             </p>
           </div>
 
