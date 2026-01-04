@@ -1,15 +1,11 @@
-import { useEffect } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Check, Play, Lock, Sparkles, Star, Zap, Calendar, AlertTriangle, Crown } from 'lucide-react';
+import { Check, Play, Sparkles, Star, Zap, Calendar, AlertTriangle, Crown } from 'lucide-react';
 import { useFunnel } from '@/contexts/FunnelContext';
-import group from '@/assets/group.svg';
 
 const POSTPURCHASE_VIDEO_URL = '{{POSTPURCHASE_VIDEO_URL}}';
 
 const PostCompra = () => {
-  const [searchParams] = useSearchParams();
-  const { setupPaid, setSetupPaid, annualUpsell, setAnnualUpsell, accompanyUpsell, setAccompanyUpsell } = useFunnel();
+  const { annualUpsell, setAnnualUpsell, accompanyUpsell, setAccompanyUpsell } = useFunnel();
 
   // Dynamic date formatting
   const today = new Date();
@@ -17,36 +13,6 @@ const PostCompra = () => {
   const dayNumber = today.getDate();
   const monthName = today.toLocaleDateString('es-ES', { month: 'long' });
 
-  useEffect(() => {
-    if (searchParams.get('paid') === 'true') {
-      setSetupPaid(true);
-    }
-  }, [searchParams, setSetupPaid]);
-
-  if (!setupPaid) {
-    return (
-      <div className="min-h-screen bg-background text-foreground bg-mesh flex items-center justify-center">
-        <div className="fixed inset-0 bg-dots opacity-20 pointer-events-none" />
-        <div className="text-center max-w-md mx-auto px-4 relative z-10">
-          <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
-            <Lock className="w-10 h-10 text-muted-foreground" />
-          </div>
-          <h1 className="font-display text-3xl font-bold mb-4">
-            Esta página es solo para clientes
-          </h1>
-          <p className="text-muted-foreground mb-8">
-            Para acceder a esta página necesitas completar la activación de tu cuenta ConverxIA.
-          </p>
-          <Link to="/">
-            <Button variant="cta" size="lg" className="gap-2">
-              <Sparkles className="w-4 h-4" />
-              Ir a activar mi agente
-            </Button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   const handleMax12 = () => {
     setAnnualUpsell(true);
