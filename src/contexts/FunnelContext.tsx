@@ -31,8 +31,8 @@ interface FunnelContextType {
   setOnboardingData: (data: OnboardingData) => void;
   onboardingComplete: boolean;
   setOnboardingComplete: (value: boolean) => void;
-  selectedPlan: 'PRO' | 'PLUS' | 'MAX' | null;
-  setSelectedPlan: (plan: 'PRO' | 'PLUS' | 'MAX' | null) => void;
+  selectedPlan: 'PRO' | 'PLUS' | 'MAX' | 'ULTRA' | null;
+  setSelectedPlan: (plan: 'PRO' | 'PLUS' | 'MAX' | 'ULTRA' | null) => void;
   annualUpsell: boolean;
   setAnnualUpsell: (value: boolean) => void;
   accompanyUpsell: boolean;
@@ -80,9 +80,9 @@ export const FunnelProvider = ({ children }: { children: ReactNode }) => {
     return saved === 'true';
   });
 
-  const [selectedPlan, setSelectedPlan] = useState<'PRO' | 'PLUS' | 'MAX' | null>(() => {
+  const [selectedPlan, setSelectedPlan] = useState<'PRO' | 'PLUS' | 'MAX' | 'ULTRA' | null>(() => {
     const saved = localStorage.getItem('converxia_selectedPlan');
-    return saved as 'PRO' | 'PLUS' | 'MAX' | null;
+    return saved as 'PRO' | 'PLUS' | 'MAX' | 'ULTRA' | null;
   });
 
   const [annualUpsell, setAnnualUpsell] = useState(() => {
