@@ -105,8 +105,8 @@ const PostCompra = () => {
             </h1>
           </div>
 
-          {/* Upsell intro block */}
-          <div className="text-center mb-8 p-6 rounded-2xl bg-gradient-to-b from-accent/10 to-transparent border border-accent/20">
+          {/* Upsell intro block - sin caja */}
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-full mb-4">
               <Zap className="w-4 h-4" />
               <span className="text-sm font-semibold">Desbloqueaste una mejora de máximo rendimiento</span>
@@ -147,6 +147,10 @@ const PostCompra = () => {
                   Licencia Anual
                 </div>
                 <h3 className="font-display text-2xl font-bold mb-1">Plan MAX 12</h3>
+                <div className="inline-flex items-center gap-1 bg-yellow-500/20 text-yellow-400 text-sm font-bold px-3 py-1 rounded-full mt-2">
+                  <Star className="w-3 h-3" fill="currentColor" />
+                  AHORRAS $1.264
+                </div>
               </div>
 
               <ul className="space-y-3 mb-6">
@@ -212,6 +216,10 @@ const PostCompra = () => {
                   Licencia + Acompañamiento
                 </div>
                 <h3 className="font-display text-2xl font-bold mb-1 text-accent">ULTRA 12</h3>
+                <div className="inline-flex items-center gap-1 bg-accent text-accent-foreground text-sm font-bold px-3 py-1 rounded-full mt-2 shadow-lg">
+                  <Star className="w-3 h-3" fill="currentColor" />
+                  AHORRAS $1.731
+                </div>
               </div>
 
               <p className="text-sm text-muted-foreground mb-4 text-center">
