@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Check, Play, Lock, Sparkles, Star, Zap, Calendar, MessageSquare } from 'lucide-react';
+import { Check, Play, Lock, Sparkles, Star, Zap, Calendar, AlertTriangle, Crown } from 'lucide-react';
 import { useFunnel } from '@/contexts/FunnelContext';
 import group from '@/assets/group.svg';
 
@@ -10,6 +10,12 @@ const POSTPURCHASE_VIDEO_URL = '{{POSTPURCHASE_VIDEO_URL}}';
 const PostCompra = () => {
   const [searchParams] = useSearchParams();
   const { setupPaid, setSetupPaid, annualUpsell, setAnnualUpsell, accompanyUpsell, setAccompanyUpsell } = useFunnel();
+
+  // Dynamic date formatting
+  const today = new Date();
+  const dayName = today.toLocaleDateString('es-ES', { weekday: 'long' });
+  const dayNumber = today.getDate();
+  const monthName = today.toLocaleDateString('es-ES', { month: 'long' });
 
   useEffect(() => {
     if (searchParams.get('paid') === 'true') {
@@ -69,21 +75,27 @@ const PostCompra = () => {
       <div className="fixed top-0 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
       <div className="fixed bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
       
-      {/* Header */}
-      <header className="relative z-10 py-6 border-b border-border/30 bg-background/50 backdrop-blur-xl">
+      {/* Sticky top bar with attention message */}
+      <header className="fixed top-0 left-0 right-0 z-50 py-3 border-b border-accent/30 bg-background/95 backdrop-blur-xl">
         <div className="container mx-auto px-4">
-          <Link to="/" className="inline-block">
-            <img src={group} alt="ConverxIA" className="h-10" />
-          </Link>
+          <div className="flex items-center justify-center gap-2 text-center flex-wrap">
+            <AlertTriangle className="w-5 h-5 text-yellow-500 flex-shrink-0" />
+            <span className="text-yellow-500 font-bold uppercase text-sm">ATENCIÓN</span>
+            <span className="text-foreground text-sm">
+              Hoy {dayName} {dayNumber} de {monthName} tu cuenta ya está activa
+            </span>
+            <span className="text-muted-foreground text-sm hidden sm:inline">|</span>
+            <span className="text-accent font-semibold text-sm">Solo te falta 1 paso</span>
+          </div>
         </div>
       </header>
 
-      <main className="relative z-10 py-12">
+      <main className="relative z-10 pt-20 pb-12">
         <div className="container mx-auto px-4 max-w-4xl">
           
           {/* Success Header */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-6 py-3 rounded-full mb-6 animate-pulse">
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-6 py-3 rounded-full mb-6">
               <Check className="w-5 h-5" />
               <span className="font-semibold">¡Pago confirmado!</span>
             </div>
@@ -91,9 +103,19 @@ const PostCompra = () => {
             <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               ¡Bienvenido a <span className="text-accent text-glow-green">ConverxIA</span>!
             </h1>
-            
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Por haber activado hoy, quiero darte una mejora especial para que tengas un modo de máximo rendimiento.
+          </div>
+
+          {/* Upsell intro block */}
+          <div className="text-center mb-8 p-6 rounded-2xl bg-gradient-to-b from-accent/10 to-transparent border border-accent/20">
+            <div className="inline-flex items-center gap-2 bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-full mb-4">
+              <Zap className="w-4 h-4" />
+              <span className="text-sm font-semibold">Desbloqueaste una mejora de máximo rendimiento</span>
+            </div>
+            <p className="text-destructive font-medium mb-2">No cierres esta pestaña: solo está disponible ahora</p>
+            <p className="text-muted-foreground">
+              <span className="text-foreground font-medium">Más canales</span> | 
+              <span className="text-foreground font-medium"> Más capacidad</span> | 
+              <span className="text-foreground font-medium"> Mejor rendimiento</span>
             </p>
           </div>
 
@@ -114,18 +136,11 @@ const PostCompra = () => {
             </div>
           </div>
 
-          {/* Upsell Intro */}
-          <div className="text-center mb-8">
-            <p className="text-lg text-foreground/80">
-              Aquí te dejo un descuento increíble y con tu crédito aplicado.
-            </p>
-          </div>
-
           {/* Upsell Cards */}
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             
             {/* MAX 12 */}
-            <div className={`card-premium p-6 md:p-8 border-2 transition-all ${annualUpsell && !accompanyUpsell ? 'border-accent bg-accent/5' : 'border-accent/30 hover:border-accent/50'}`}>
+            <div className={`card-premium p-6 md:p-8 border-2 transition-all ${annualUpsell && !accompanyUpsell ? 'border-accent bg-accent/5' : 'border-border/30 hover:border-accent/30'}`}>
               <div className="text-center mb-6">
                 <div className="inline-flex items-center gap-2 bg-accent/20 text-accent text-sm font-semibold px-4 py-1.5 rounded-full mb-3">
                   <Zap className="w-4 h-4" />
@@ -166,7 +181,7 @@ const PostCompra = () => {
                   <span className="font-semibold">Seleccionado</span>
                 </div>
               ) : (
-                <Button variant="cta" size="lg" onClick={handleMax12} className="w-full gap-2">
+                <Button variant="secondary-dark" size="lg" onClick={handleMax12} className="w-full gap-2">
                   <Sparkles className="w-4 h-4" />
                   Activar MAX 12 ahora
                 </Button>
@@ -177,14 +192,26 @@ const PostCompra = () => {
               </p>
             </div>
 
-            {/* ULTRA 12 */}
-            <div className={`card-premium p-6 md:p-8 border-2 transition-all ${accompanyUpsell ? 'border-accent bg-accent/5' : 'border-accent/30 hover:border-accent/50'}`}>
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center gap-2 bg-accent/20 text-accent text-sm font-semibold px-4 py-1.5 rounded-full mb-3">
+            {/* ULTRA 12 - DESTACADO */}
+            <div className={`relative p-6 md:p-8 rounded-2xl border-2 transition-all ${
+              accompanyUpsell 
+                ? 'border-accent bg-accent/10' 
+                : 'bg-gradient-to-b from-accent/20 to-accent/5 border-accent shadow-lg shadow-accent/20'
+            }`}>
+              {/* Badge destacado */}
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span className="bg-accent text-accent-foreground text-xs font-bold px-4 py-1.5 rounded-full shadow-lg animate-pulse flex items-center gap-1">
+                  <Crown className="w-3 h-3" />
+                  RECOMENDADO
+                </span>
+              </div>
+
+              <div className="text-center mb-6 mt-2">
+                <div className="inline-flex items-center gap-2 bg-yellow-500/20 text-yellow-400 text-sm font-semibold px-4 py-1.5 rounded-full mb-3">
                   <Star className="w-4 h-4" fill="currentColor" />
                   Licencia + Acompañamiento
                 </div>
-                <h3 className="font-display text-2xl font-bold mb-1">ULTRA 12</h3>
+                <h3 className="font-display text-2xl font-bold mb-1 text-accent">ULTRA 12</h3>
               </div>
 
               <p className="text-sm text-muted-foreground mb-4 text-center">
@@ -194,10 +221,10 @@ const PostCompra = () => {
               <ul className="space-y-3 mb-6">
                 {ultra12Features.map((feature, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-accent" />
+                    <div className="w-5 h-5 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-accent-foreground" />
                     </div>
-                    <span className="text-foreground/80 text-sm">{feature}</span>
+                    <span className="text-foreground/90 text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -223,9 +250,9 @@ const PostCompra = () => {
                   <span className="font-semibold">Seleccionado</span>
                 </div>
               ) : (
-                <Button variant="cta" size="lg" onClick={handleUltra12} className="w-full gap-2">
+                <Button variant="cta" size="lg" onClick={handleUltra12} className="w-full gap-2 shadow-lg shadow-accent/30">
                   <Calendar className="w-4 h-4" />
-                  Quiero ULTRA 12 (con acompañamiento)
+                  🚀 Quiero ULTRA 12
                 </Button>
               )}
             </div>
